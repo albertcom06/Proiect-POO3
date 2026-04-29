@@ -1,6 +1,5 @@
-Sistem de Gestiune Pariuri Sportive
+## Sistem de Gestiune Pariuri Sportive
 
-> **Proiect POO** - O simulare complexa pentru gestionarea evenimentelor sportive si a biletelor de pariuri, axata pe principii solide de programare orientata pe obiect.
 
 ---
 
@@ -40,10 +39,10 @@ Proiectul foloseste o ierarhie de clase cu baza proprie, pornind de la clasa abs
 ##  Gestiunea Exceptiilor (Ierarhie Proprie)
 Proiectul include o ierarhie de exceptii derivate din `std::runtime_error`:
 
-| Exceptie | Cauza |
-| :--- | :--- |
-| `MizaInvalida` | Aruncata daca miza biletului este negativa. |
-| `CotaInvalida` | Aruncata daca datele din fisier contin cote <= 1.0. |
+| Exceptie | Cauza                                                     |
+| :--- |:----------------------------------------------------------|
+| `MizaInvalida` | Folosita daca miza biletului este negativa.               |
+| `CotaInvalida` | Folosita daca datele din fisier contin cote <= 1.0.       |
 | `EroarePariuri` | Clasifica erori de business (ex: pariu pe egal in tenis). |
 
 ---
