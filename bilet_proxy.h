@@ -8,11 +8,13 @@ template <typename T>
 class BiletProxy {
 private:
     Bilet<T> biletReal;
-    bool esteContPremium;
+    bool esteContPremium; //indicator pentru statutul pariorului
 
     public:
+    //Constructor Proxy ;primeste miza, detaliu si tipul contului
     BiletProxy(double miza, T detaliu, bool premium):biletReal(miza,detaliu),esteContPremium(premium){}
 
+    //functie pentru adaugarea meciurilor direct in biletul real
     void adaugaMeci(std::shared_ptr<Sport> s) {
         biletReal.adaugaMeci(s);
     }

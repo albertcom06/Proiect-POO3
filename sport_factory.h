@@ -12,6 +12,7 @@
 
 class SportFactory {
     public:
+    //metoda statica de creare
     static std::shared_ptr<Sport> creeazaSport(const std::string& tip, const std::string& nume,double cota,const std::string& pronostic,double extraParam, const std::string& extraString ="") {
         if (tip == "Fotbal") {
             //extraParam determina daca sunt prelungiri
