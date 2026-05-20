@@ -1,12 +1,22 @@
 # Proiect POO3 : Sistem gestiune pariuri sportive
-**Autor**:Comarniceanu Albert
-**Grupa**:132
+**Autor:** Comarniceanu Albert
+**Grupa:** 132
+**An academic:** 2025-2026
 ---
 
 ## 1. Introducere si Descrierea Schemei de Lucru (Tema Proiectului)
-Proiectul implementeaza o aplicatie software scrisa in limbajul C++, ce simuleaza functionarea unui „Sistem de Pariuri Sportive” (inspirat din platforme reale precum Superbet). Scopul principal al aplicatiei este gestionarea eficienta, polimorfica si sigura a unei oferte de evenimente sportive dinamica, precum si procesarea biletelor de pariuri plasate de utilizatori.
+Proiectul implementeaza o aplicatie software scrisa in limbajul C++, ce simuleaza functionarea 
+unui „Sistem de Pariuri Sportive” (inspirat din platforme reale precum Superbet). Scopul principal 
+al aplicatiei este gestionarea eficienta, polimorfica si sigura a unei oferte de evenimente sportive 
+dinamica, precum si procesarea biletelor de pariuri plasate de utilizatori.
 
-Problema fundamentala rezolvata de acest sistem consta in modelarea unui domeniu de activitate in care entitatile (meciurile) au comportamente si atribute diferite in functie de specificul sportului (Fotbal, Tenis, Baschet), dar care trebuie tratate uniform de catre motorul de calcul al biletelor. Sistemul automatizeaza citirea datelor dintr-un fisier extern (`Meciuri_bilet`), instantierea memoriei prin mecanisme sigure de gestionare a pointerilor (`std::shared_ptr`), aplicarea de algoritmi recursivi pentru calculul bonusurilor de multiplicare si securizarea plasarii biletelor pe baza profilelor de utilizatori.
+Problema fundamentala rezolvata de acest sistem consta in modelarea unui domeniu de activitate in 
+care entitatile (meciurile) au comportamente si atribute diferite in functie de specificul 
+sportului (Fotbal, Tenis, Baschet), dar care trebuie tratate uniform de catre motorul de calcul al 
+biletelor. Sistemul automatizeaza citirea datelor dintr-un fisier extern (`Meciuri_bilet`), 
+instantierea memoriei prin mecanisme sigure de gestionare a pointerilor (`std::shared_ptr`), 
+aplicarea de algoritmi recursivi pentru calculul bonusurilor de multiplicare si securizarea plasarii 
+biletelor pe baza profilelor de utilizatori.
 
 ---
 
