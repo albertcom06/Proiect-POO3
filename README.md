@@ -1,5 +1,6 @@
 # Proiect POO3 : Sistem gestiune pariuri sportive
 **Autor**:Comarniceanu Albert
+**Grupa**:132
 ---
 
 ## 1. Introducere si Descrierea Schemei de Lucru (Tema Proiectului)
