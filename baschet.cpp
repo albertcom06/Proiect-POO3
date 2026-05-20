@@ -15,6 +15,5 @@ double Baschet::calculeazaCastig(double miza) const {
 
 void Baschet::afisareSpecifica(std::ostream& os) const {
     os << " [Baschet] Pronostic: " << getPronostic()
-       <<"  Cota: "<<getCotaBaza()
        << "  Limita puncte: " << limitaPuncte;
 }

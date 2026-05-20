@@ -24,7 +24,6 @@ double Tenis::calculeazaCastig(double miza) const {
 // Implementare afisare specifica
 void Tenis::afisareSpecifica(std::ostream &os) const {
     os << " [Tenis] Pronostic: " << getPronostic()
-       <<"  Cota: "<<getCotaBaza()
        << "  Suprafata: " << suprafataTeren
        << "  Tip: " << (esteMeciDublu ? "Dublu" : "Simplu");
 }

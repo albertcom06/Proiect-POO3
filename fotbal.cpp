@@ -18,6 +18,5 @@ bool Fotbal::getArePrelungiri() const {return arePrelungiri;}
 //afisare detalii extra
 void Fotbal::afisareSpecifica(std::ostream &os) const {
     os << "[Fotbal] Pronostic: " <<getPronostic()
-    <<" | Cota: "<<getCotaBaza()
     << " | Prelungiri: " << (arePrelungiri ? "Da" : "Nu");
 }

@@ -8,8 +8,11 @@
 #include "baschet.h"
 #include "bilet.h"
 #include "erori.h"
+#include "agentie.h"
+#include "sport_factory.h"
+#include "bilet_proxy.h"
 
- //Citim fisierul si cream o lista de meciuri
+//Citim fisierul si cream o lista de meciuri
  std::vector<std::shared_ptr<Sport>> incarcaOferta(const std::string& Meciuri_bilet){
     std::vector<std::shared_ptr<Sport>> oferta;
     std::ifstream fin(Meciuri_bilet);
@@ -34,7 +37,8 @@
 
             if (cota <= 1.0) throw CotaInvalida(cota);
 
-            oferta.push_back(std::make_shared<Fotbal>(nume, cota, pronostic, prelungiri));
+            //Apel Factory
+            oferta.push_back(SportFactory::creeazaSport("Fotbal",nume, cota, pronostic, prelungiri));
         }else if (tip=="Tenis") {
             std::string suprafata;
             bool dublu;
@@ -46,7 +50,8 @@
 
             if (cota <= 1.0) throw CotaInvalida(cota);
 
-           oferta.push_back(std::make_shared<Tenis>(nume, cota, pronostic, suprafata, dublu));
+            //Apel Factory
+           oferta.push_back(SportFactory::creeazaSport("Tenis",nume, cota, pronostic, dublu, suprafata));
         }else if (tip=="Baschet") {
             int limita;
             fin >> nume >> c1 >> cX >> c2 >> pronostic >> limita;
@@ -57,7 +62,8 @@
 
             if (cota <= 1.0) throw CotaInvalida(cota);
 
-            oferta.push_back(std::make_shared<Baschet>(nume, cota, pronostic, limita));
+            //Apel Factory
+            oferta.push_back(SportFactory::creeazaSport("Baschet",nume, cota, pronostic, limita));
         }
     }
     return oferta;
@@ -112,28 +118,46 @@ std::vector<std::shared_ptr<Sport>> filtreazaDupaSport(const std::vector<std::sh
 int main() {
 
     try {
+
+        AgentiePariuri& app =AgentiePariuri::get_instance();
+        app.afisareMsjBunVenit();
+
+        afiseazaMesajSistem(std::string("\n Se incepe procesarea fisierului de pariuri: "));
+
         // 1. Incarca toate optiunile din fisier
         auto ofertaMeciuri = incarcaOferta("Meciuri_bilet");
         size_t nrMeciuri = ofertaMeciuri.size();
 
-        verificaDetaliiFotbal(ofertaMeciuri);
 
+        std::cout << "Numar evenimente active in memorie: " << Sport::getNrEvenimente() << std::endl;
+
+        std::cout<<"\n";
+        verificaDetaliiFotbal(ofertaMeciuri);
+        std::cout<<"\n";
 
         // 2. Cream Biletul 1 (Meciul 1 si 2)
-        Bilet bilet1(50.0);
+        //Verificare operator template (friend)
+        Bilet<std::string> bilet1(50.0, "Cod_Promo_Super_50");
         if (nrMeciuri >= 2) {
             bilet1.adaugaMeci(ofertaMeciuri[0]->clone());
             bilet1.adaugaMeci(ofertaMeciuri[1]->clone());
         }
 
         // 3. Cream Biletul 2 (Meciul 2 si 3)
-        Bilet bilet2(100.0);
+        Bilet<int> bilet2(100.0,9970);
         if (nrMeciuri >= 3) {
             bilet2.adaugaMeci(ofertaMeciuri[1]->clone()); // Clonat pentru a fi independent
             bilet2.adaugaMeci(ofertaMeciuri[2]->clone());
         }
 
-        // Afișare rezultate
+
+           std::cout<<"\n Verificare operator template friend:";
+           std::cout<<"\n";
+           std::cout<<bilet1<<"\n";
+           std::cout<<bilet2<<"\n";
+           std::cout<<"\n";
+
+        // Afișare rezultate bilete standard
         std::cout << "\n Bilet 1 \n";
         bilet1.afiseazaContinut();
         std::cout << "Castig: " << bilet1.calculeazaPotentialCastig() << " RON\n\n";
@@ -150,21 +174,52 @@ int main() {
             std::cout << *meci << "\n"; // Foloseste operatorul << polimorfic
         }
 
-        // Creare bilet doar cu meciuri de tenis
+        // Creare bilet doar cu meciuri de tenis, INSTANTIAT CU TIPUL CHAR
         if (!doarTenis.empty()) {
-            Bilet biletSpecial(20.0);
+            Bilet<char> biletSpecial(20.0,'T');
             biletSpecial.adaugaMeci(doarTenis[0]);
 
         }
 
         std::cout<<"\n";
 
-        Bilet biletGigant(10.0);
+
+        //Bilet acumulator gigant
+        Bilet<std::string> biletGigant(10.0,"Bilet acumulator global");
         for(const auto& m : ofertaMeciuri) {
             biletGigant.adaugaMeci(m);
         }
         biletGigant.afiseazaContinut();
+        std::cout<<"\n\n";
 
+        //TEST DESIGN PATTERN 3 : PROXY
+
+        //caz 1
+
+        BiletProxy<int> proxyBiletNormal(1500.0,7741,false);
+        if (nrMeciuri>=2) {
+            proxyBiletNormal.adaugaMeci(ofertaMeciuri[0]);
+            proxyBiletNormal.adaugaMeci(ofertaMeciuri[1]);
+        }
+
+        proxyBiletNormal.proceseazaSiPlaseazaBilet();
+        std::cout<<"\n \n";
+
+        //caz 2
+        BiletProxy<int> proxyBiletPremium(1500.0,7741,true);
+
+        if (nrMeciuri>=2) {
+            proxyBiletPremium.adaugaMeci(ofertaMeciuri[1]);
+            proxyBiletPremium.adaugaMeci(ofertaMeciuri[2]);
+        }
+
+        proxyBiletPremium.proceseazaSiPlaseazaBilet();
+        std::cout<<"\n \n";
+
+        //INCA UN TEST PENTRU FUNCTIA LIBERA TEMPLATE
+        std::cout<<"\n";
+        afiseazaMesajSistem(100);
+        std::cout<<"\n";
     } catch (const EroarePariuri& e) {
         std::cerr << "Eroare: " << e.what() << "\n";
     }

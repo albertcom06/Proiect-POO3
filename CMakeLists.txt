@@ -11,8 +11,10 @@ add_executable(Proiect_POO2 main.cpp
         bilet.h
         sport.cpp
         fotbal.cpp
-        bilet.cpp
         tenis.cpp
         baschet.h
-        baschet.cpp)
+        baschet.cpp
+        agentie.h
+        sport_factory.h
+        bilet_proxy.h)
 configure_file(Meciuri_bilet ${CMAKE_CURRENT_BINARY_DIR}/Meciuri_bilet.txt COPYONLY)

@@ -1,6 +1,4 @@
-//
-// Created by userpc on 4/25/2026.
-//
+
 #ifndef PROIECT_POO2_ERORI_H
 #define PROIECT_POO2_ERORI_H
 
