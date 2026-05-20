@@ -56,7 +56,7 @@ momentul apelului in `main.cpp`,pentru a putea evita erorile clasice de legare.
 
 De asemenea, am implementat un operator friend template (`operator<<`) care depinde de tipul `T` pentru 
 afisarea directa in `std::cout`, precum si o functie libera template `afiseazaMesajSistem<T>` 
-destinata jurnalizării (logging) actiunilor administrative din agenție.
+destinata jurnalizarii (logging) actiunilor administrative din agenție.
 
 ## 4. Design Patterns
 
@@ -64,7 +64,7 @@ destinata jurnalizării (logging) actiunilor administrative din agenție.
 Implementat in clasa `AgentiePariuri`, acest tipar garanteaza ca pe parcursul rularii aplicatiei va 
 exista o singura instanta globala a nucleului agentiei (stocand date structurale cum ar fi numele agentiei, 
 "Superbet").
-- Constructorul implicit a fost trecut în zona `private`. 
+- Constructorul implicit a fost trecut in zona `private`. 
 Constructorul de copiere si operatorul de atribuire au fost stersi folosind cuvantul 
 cheie `=delete` pentru a bloca orice tentativa de duplicare a obiectului in memorie. 
 Accesul se face prin functia statica `get_instance()`, care intoarce o referinta catre o instanta 
@@ -77,7 +77,7 @@ Clasa `SportFactory` rezolva elegant aceasta problema, centralizand logica de cr
 - Functia statica `creeazaSport` primeste ca prim argument un `std::string tip`. 
 Pe baza unei structuri decizionale (`if-else`), fabrica parseaza argumentele din fisier, decide ce 
 obiect din ierarhie trebuie construit (`Fotbal`, `Tenis` sau `Baschet`), incapsuleaza logica 
-interna a acestora (de exemplu, conversia unui parametru generic de tip `double` în `bool` 
+interna a acestora (de exemplu, conversia unui parametru generic de tip `double` in `bool` 
 pentru prelungiri sau in `int` pentru limita de puncte la baschet) si returnează un `std::shared_ptr<Sport>`.
 
 ### C. Proxy Pattern
