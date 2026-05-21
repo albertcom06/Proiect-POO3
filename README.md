@@ -93,4 +93,4 @@ Daca utilizatorul este Premium (`true`), proxy-ul valideaza operatiunea si delea
 functia `afiseazaContinut()` a biletului real. Acest pattern decupleaza logica de calcul de 
 regulile administrative ale aplicatiei.
 
-----
+---

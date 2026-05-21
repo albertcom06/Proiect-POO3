@@ -140,4 +140,3 @@ std::ostream& operator<<(std::ostream& os, const Bilet<T>& b) {
 }
 
 #endif //PROIECT_POO2_BILET_H
-/
