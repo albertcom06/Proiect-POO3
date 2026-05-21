@@ -21,6 +21,7 @@ private:
     std::vector<std::shared_ptr<Sport>> pariuri;
     double miza;
 
+    //atribut de tip t
     T detaliuBilet;
 
     double calculeazaProcentRecursiv(int nrMeciuri) const{

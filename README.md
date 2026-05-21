@@ -14,7 +14,7 @@ Problema fundamentala rezolvata de acest sistem consta in modelarea unui domeniu
 care entitatile (meciurile) au comportamente si atribute diferite in functie de specificul 
 sportului (Fotbal, Tenis, Baschet), dar care trebuie tratate uniform de catre motorul de calcul al 
 biletelor. Sistemul automatizeaza citirea datelor dintr-un fisier extern (`Meciuri_bilet`), 
-instantierea memoriei prin mecanisme sigure de gestionare a pointerilor (`std::shared_ptr`), 
+alocarea memoriei prin mecanisme sigure de gestionare a pointerilor (`std::shared_ptr`), 
 aplicarea de algoritmi recursivi pentru calculul bonusurilor de multiplicare si securizarea plasarii 
 biletelor pe baza profilelor de utilizatori.
 
@@ -56,7 +56,7 @@ momentul apelului in `main.cpp`,pentru a putea evita erorile clasice de legare.
 
 De asemenea, am implementat un operator friend template (`operator<<`) care depinde de tipul `T` pentru 
 afisarea directa in `std::cout`, precum si o functie libera template `afiseazaMesajSistem<T>` 
-destinata jurnalizarii (logging) actiunilor administrative din agenție.
+destinata evidentierii actiunilor administrative din agenție.
 
 ## 4. Design Patterns
 
